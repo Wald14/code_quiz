@@ -64,4 +64,11 @@ function countDownTimer() {
 function askQuestions() {
   console.log("askQuestions function started")
   question.textContent = questions[0].question;
+
+  // https://www.w3schools.com/jsref/dom_obj_pushbutton.asp
+  var buttonA = document.createElement("BUTTON");
+  buttonA.appendChild(document.createTextNode(questions[0].answer1));
+  document.body.appendChild(buttonA);
+
+  
 }

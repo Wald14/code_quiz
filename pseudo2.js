@@ -23,4 +23,9 @@
   5) Listen for click of Highscore button
       A) Display highscore
 
+
+
+
+Array of Objects
+https://www.freecodecamp.org/news/javascript-array-of-objects-tutorial-how-to-create-update-and-loop-through-objects-using-js-array-methods/
 */
