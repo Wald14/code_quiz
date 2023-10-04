@@ -3,7 +3,7 @@
   2) Upon click:
       A) Start the timer
           1. Every one second
-              a. update countdown
+              a. update countdown (DONE)
               b. check to see if timer has hit 0, if so end game
               c. check to see if game has ended
       B) Hide "Start Quiz Button"
