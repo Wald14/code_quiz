@@ -7,21 +7,21 @@ var timer;
 // Questions (array of objects)
 var questions = [ 
   {
-    question: "This is question one",
+    question: "This is question one?",
     answer1: "correct",
     answer2: "wrong",
-    answer3: "correct",
+    answer3: "wrong",
     answer4: "wrong"
   },
   {
-    question: "This is question two",
+    question: "This is question two?",
     answer1: "correct again",
     answer2: "wrong again",
     answer3: "wrong again",
     answer4: "wrong again"
   },
   {
-    question: "This is question three",
+    question: "This is question three?",
     answer1: "correct yet again",
     answer2: "wrong yet again",
     answer3: "wrong yet again",
@@ -66,9 +66,25 @@ function askQuestions() {
   question.textContent = questions[0].question;
 
   // https://www.w3schools.com/jsref/dom_obj_pushbutton.asp
-  var buttonA = document.createElement("BUTTON");
-  buttonA.appendChild(document.createTextNode(questions[0].answer1));
+  var buttonA = document.createElement("button");
+  buttonA.textContent = questions[0].answer1;
   document.body.appendChild(buttonA);
+
+  var buttonB = document.createElement("button");
+  buttonB.textContent = questions[0].answer2;
+  document.body.appendChild(buttonB);
+
+  var buttonC = document.createElement("button");
+  buttonC.textContent = questions[0].answer3;
+  document.body.appendChild(buttonC);
+
+  var buttonD = document.createElement("button");
+  buttonD.textContent = questions[0].answer4;
+  document.body.appendChild(buttonD);
+
+
+  // buttonA.appendChild(document.createTextNode(questions[0].answer1));
+  // document.body.appendChild(buttonA);
 
   
 }

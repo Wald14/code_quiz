@@ -1,12 +1,28 @@
 /* https://blog.hubspot.com/website/center-div-css */
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px;
+}
+
 h1 {
   font-size: 3rem;
 }
 
-p {
+p,
+.timer-count {
   font-size: 2rem;
 }
 
+.timer-count {
+  padding-left: 10px;
+}
+
+.timerDiv {
+  display: flex;
+  flex-direction: row;
+}
 
 .center {
   border: 5px solid lightcoral;
