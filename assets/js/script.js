@@ -127,6 +127,9 @@ function highScoreDisplay () {
   userInputBoxEl.classList.add("hide");
   highScoreBoxEl.classList.remove("hide");
 
+  // Sort scoreboard by highest score
+  filterArrayOfObjects();
+
   // Create Table Element
   var highScoreTable = document.createElement("table");
 
@@ -157,7 +160,15 @@ function highScoreDisplay () {
     highScoreTable.append(row);
   }
   // append table to high score box
-  highScoreBoxEl.append(highScoreTable)
+  highScoreBoxEl.append(highScoreTable);
+}
+
+function filterArrayOfObjects() {
+  highScoreArray.sort(function(a,b) {
+    if(a.score > b.score){
+      return -1;
+    }
+  })
 }
 
 startBtnEl.addEventListener("click", startGame);
