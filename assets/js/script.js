@@ -19,6 +19,7 @@ var timer = 75;
 var qNumber = 0;
 var score = 0;
 
+
 // Global Arrays
 var highScoreArray = loadHighScoreArray();
 var questions = [
@@ -61,6 +62,7 @@ var questions = [
 
 
 // Functions
+// Starts the game
 function startGame() {
   startBoxEl.classList.add("hide");
   questionBoxEl.classList.remove("hide");
@@ -69,6 +71,7 @@ function startGame() {
 }
 
 
+// Controls the start and tick of the timer
 function countDownTimer() {
   timerInterval = setInterval(function () {
     // Subtract 1 from timer
@@ -86,6 +89,7 @@ function countDownTimer() {
 }
 
 
+// Creates the current question
 function displayQuestion() {
   // Sets <h2> to display current question
   questionEl.textContent = questions[qNumber].question;
@@ -108,6 +112,8 @@ function displayQuestion() {
 }
 
 
+// Checks if question was answered correctly, giving either points to the score or removing time from the clock
+// Checks if the last question has been answered, and if not, cycles to the next question
 function cycleQuestion() {
   // Check if the wrong answer was selected and hand out 10 second penalty if so
   feedbackBoxEl.classList.remove("visibility");
@@ -133,6 +139,7 @@ function cycleQuestion() {
 }
 
 
+// Displays if the user got the last question "correct" or "wrong"
 function displayFeedback (text) {
   var feedbackTime = 2;
   var feedbackTimer;
@@ -151,6 +158,8 @@ function displayFeedback (text) {
 }
 
 
+// Displays the End Game screen
+// Asks for initials and stores to local storage if submitted
 function endGame() {
   // Cancels timer
   clearInterval(timerInterval);
@@ -190,6 +199,7 @@ function endGame() {
 }
 
 
+// Generates a High Score Table from local storage
 function highScoreDisplay () {
   // Hide userInput box OR startBox OR QuestionBox depending on where user is navigating from
   // Show high score box
@@ -263,6 +273,7 @@ function highScoreDisplay () {
 }
 
 
+// Sorts the high score table by score (Highest to Lowest)
 function filterArrayOfObjects() {
   highScoreArray.sort(function(a,b) {
     if(a.score > b.score){
@@ -272,11 +283,13 @@ function filterArrayOfObjects() {
 }
 
 
+// Saves the High Score array to local storage
 function saveHighScoreArray() {
   localStorage.setItem("High-Score-Array", JSON.stringify(highScoreArray));
 }
 
 
+// Loads the High Score array if it's not empty
 function loadHighScoreArray() {
   highScoreArray = JSON.parse(localStorage.getItem("High-Score-Array"));
   if (highScoreArray === null){
@@ -287,5 +300,6 @@ function loadHighScoreArray() {
 }
 
 
+// EventListeners for starting the game or to view high scores
 startBtnEl.addEventListener("click", startGame);
 highScoreBtnEl.addEventListener("click", highScoreDisplay);
