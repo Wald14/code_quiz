@@ -23,19 +23,39 @@ var score = 0;
 var highScoreArray = loadHighScoreArray();
 var questions = [
   {
-    question: "This is question one?",
-    choices: ["wrong", "correct", "wrong", "wrong"],
-    answer: "correct"
+    question: "Which of the following describes the structure of a webpage?",
+    choices: ["JavaScript", "HTML", "CSS", "Python"],
+    answer: "HTML"
   },
   {
-    question: "This is question two?",
-    choices: ["wrong", "wrong", "wrong", "correct"],
-    answer: "correct"
+    question: "Which of the following is in charge of styling the webpage?",
+    choices: ["Python", "HTML", "JavaScript", "CSS"],
+    answer: "CSS"
   },
   {
-    question: "This is question three?",
-    choices: ["correct", "wrong", "wrong", "wrong"],
-    answer: "correct"
+    question: "Which of the following is a HTML paragraph tag?",
+    choices: ["<p>", ".para", "#p", '"paragraph"'],
+    answer: "<p>"
+  },
+  {
+    question: "Which of the following is an example of a string?",
+    choices: ["14", "false", '"Hello, World"', "function()"],
+    answer: '"Hello, World"'
+  },
+  {
+    question: "Which language makes a webpage interactive?",
+    choices: ["HTML", "JavaScript", "CSS", "Python"],
+    answer: "JavaScript"
+  },
+  {
+    question: "Which array method adds a specified element to the end of an array?",
+    choices: ["length", "unshift()", "concat()", "push()"],
+    answer: "push()"
+  },
+  {
+    question: "True or False, coding is fun",
+    choices: ["True", "False"],
+    answer: "True"
   }
 ]
 
@@ -114,7 +134,7 @@ function cycleQuestion() {
 
 
 function displayFeedback (text) {
-  var feedbackTime = 3;
+  var feedbackTime = 2;
   var feedbackTimer;
   feedbackBoxEl.classList.remove("visibility");
   correctOrWrongEl.textContent = text;
