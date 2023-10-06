@@ -13,7 +13,7 @@ var headerEl = document.querySelector("header");
 
 // Global Variables
 var timerInterval;
-var timer = 75;
+var timer = 15;
 var qNumber = 0;
 var score = 0;
 
@@ -56,6 +56,7 @@ function countDownTimer() {
 
     // End Game if timer hits zero OR goes below zero because the player gets a 10 second penalty with less then 10 seconds left, causing timer to go below 0.
     if (timer <= 0) {
+      timerCountEl.textContent = "0"
       endGame();
     }
   }, 1000)
