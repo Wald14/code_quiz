@@ -13,9 +13,10 @@ var answerBoxEl = document.querySelector("#answer-box");
 var timerInterval;
 var timer = 75;
 var qNumber = 0;
+var score = 0;
 
-
-// Questions (array of objects)
+// Global Arrays
+var highScoreArray = [];
 var questions = [
   {
     question: "This is question one?",
@@ -60,7 +61,6 @@ function countDownTimer() {
 function displayQuestion() {
   // Sets <h2> to display current question
   questionEl.textContent = questions[qNumber].question;
-  console.log(questions[qNumber].question);
   // clears answers (if any)
   answerBoxEl.innerHTML = "";
 
@@ -80,6 +80,8 @@ function cycleQuestion() {
   // Check if the wrong answer was selected and hand out 10 second penalty if so
   if (this.textContent !== questions[qNumber].answer) {
     timer -= 10;
+  } else {
+    score += 10;
   }
   // Increase question number to index to the next question
   qNumber++;
@@ -93,7 +95,29 @@ function cycleQuestion() {
 
 
 function endGame() {
-
+  // Cancels timer
+  clearInterval(timerInterval);
+  // Hide question box and show user input box
+  questionBoxEl.classList.add("hide");
+  userInputBoxEl.classList.remove("hide");
+  // Create <h3> with users final score
+  var userScore = document.createElement("h3");
+  userScore.textContent = `Score: ${score}`;
+  // Create input for user to submit initials
+  var initialInputField = document.createElement("input");
+  initialInputField.setAttribute("type", "text");
+  initialInputField.setAttribute("placeholder", "Enter Initials");
+  // Create submit button
+  var submitBtn = document.createElement("input");
+  submitBtn.setAttribute("type", "submit");
+  // Append to userInputBox
+  userInputBoxEl.append(userScore, initialInputField, submitBtn);
+  // Event listener for initals submission button
+  submitBtn.addEventListener("click", function () {
+    console.log(`Player ${initialInputField.value} had a score of ${score} and was added to highScoreArray`);
+    highScoreArray.push({ player: initialInputField.value, score: score });
+    console.log(highScoreArray);
+  })
 }
 
 
