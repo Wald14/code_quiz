@@ -8,6 +8,7 @@ var timerCountEl = document.querySelector("#time-count");
 var questionEl = document.querySelector("#question");
 var answerBoxEl = document.querySelector("#answer-box");
 var highScoreBtnEl = document.querySelector("#high-score-button");
+var headerEl = document.querySelector("header");
 
 
 // Global Variables
@@ -148,6 +149,7 @@ function highScoreDisplay () {
   userInputBoxEl.classList.add("hide");
   startBoxEl.classList.add("hide");
   questionBoxEl.classList.add("hide");
+  headerEl.classList.add("hide");
   highScoreBoxEl.classList.remove("hide");
 
   // Cancels timer in the event the user clicked mid game
@@ -190,6 +192,25 @@ function highScoreDisplay () {
   }
   // append table to high score box
   highScoreBoxEl.append(highScoreTable);
+
+
+  // create buttons for return
+  var returnBtn = document.createElement("button")
+  returnBtn.textContent = "Go Back";
+  returnBtn.addEventListener("click", function(){
+    location.reload()
+  })
+  highScoreBoxEl.append(returnBtn);
+
+  // create buttons for clearing high score
+  var clearScoresBtn = document.createElement("button")
+  clearScoresBtn.textContent = "Clear Highscores";
+  clearScoresBtn.addEventListener("click", function() {
+    localStorage.removeItem("High-Score-Array")
+    // highScoreArray = [];
+    location.reload();
+  })
+  highScoreBoxEl.append(clearScoresBtn);
 }
 
 
