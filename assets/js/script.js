@@ -17,7 +17,7 @@ var qNumber = 0;
 var score = 0;
 
 // Global Arrays
-var highScoreArray = [{player: "Kirstin", score: 10}, {player: "Zach", score: 0}];
+var highScoreArray = loadHighScoreArray();
 var questions = [
   {
     question: "This is question one?",
@@ -36,6 +36,7 @@ var questions = [
   }
 ]
 
+// Functions
 function startGame() {
   startBoxEl.classList.add("hide");
   questionBoxEl.classList.remove("hide");
@@ -77,6 +78,7 @@ function displayQuestion() {
   }
 }
 
+
 function cycleQuestion() {
   // Check if the wrong answer was selected and hand out 10 second penalty if so
   if (this.textContent !== questions[qNumber].answer) {
@@ -117,10 +119,13 @@ function endGame() {
   submitBtn.addEventListener("click", function () {
     // console.log(`Player ${initialInputField.value} had a score of ${score} and was added to highScoreArray`);
     highScoreArray.push({ player: initialInputField.value, score: score });
-    // console.log(highScoreArray);
+    // Save high score data to local storage
+    saveHighScoreArray();
+    // Display High Score Table;
     highScoreDisplay();
   })
 }
+
 
 function highScoreDisplay () {
   // Hide userInput box and show high score box
@@ -146,7 +151,6 @@ function highScoreDisplay () {
   for (var i = 0; i < highScoreArray.length; i++){
     // pull values from objects in array
     var values = Object.values(highScoreArray);
-    console.log(`The values are ${values}`)
     // create row
     var row = document.createElement("tr");
     // create player cell and populate
@@ -163,12 +167,28 @@ function highScoreDisplay () {
   highScoreBoxEl.append(highScoreTable);
 }
 
+
 function filterArrayOfObjects() {
   highScoreArray.sort(function(a,b) {
     if(a.score > b.score){
       return -1;
     }
   })
+}
+
+
+function saveHighScoreArray() {
+  localStorage.setItem("High-Score-Array", JSON.stringify(highScoreArray));
+}
+
+function loadHighScoreArray() {
+  highScoreArray = JSON.parse(localStorage.getItem("High-Score-Array"));
+  console.log(highScoreArray);
+  if (highScoreArray === null){
+    return [];
+  } else {
+  return highScoreArray;
+  }
 }
 
 startBtnEl.addEventListener("click", startGame);
