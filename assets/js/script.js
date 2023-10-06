@@ -39,6 +39,7 @@ var questions = [
   }
 ]
 
+
 // Functions
 function startGame() {
   startBoxEl.classList.add("hide");
@@ -111,7 +112,6 @@ function cycleQuestion() {
   }
 }
 
-// REWIND COMPLETE
 
 function displayFeedback (text) {
   var feedbackTime = 3;
@@ -256,6 +256,7 @@ function saveHighScoreArray() {
   localStorage.setItem("High-Score-Array", JSON.stringify(highScoreArray));
 }
 
+
 function loadHighScoreArray() {
   highScoreArray = JSON.parse(localStorage.getItem("High-Score-Array"));
   if (highScoreArray === null){
@@ -264,6 +265,7 @@ function loadHighScoreArray() {
   return highScoreArray;
   }
 }
+
 
 startBtnEl.addEventListener("click", startGame);
 highScoreBtnEl.addEventListener("click", highScoreDisplay);

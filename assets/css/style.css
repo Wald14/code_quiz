@@ -159,3 +159,12 @@ tr:nth-child(even) {
 .visibility{
   visibility: hidden;
 }
+
+/* Adjust font size for mobile */
+@media screen and (max-width: 425px) {
+  :root {
+    --fontsize1: 40px;
+    --fontsize2: 25px;
+    --fontsize3: 15px;
+  }
+}
