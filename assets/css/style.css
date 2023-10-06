@@ -2,9 +2,12 @@
   --color1: #0b4eb3;
   --color2: #0d6efd;
   --color3: #fff;
+  --color4: #a0c4fa;
+  --color5: #647083;
   --fontsize1: 50px;
   --fontsize2: 30px;
   --fontsize3: 20px;
+  --fontsize4: 15px;
 }
 
 * {
@@ -61,12 +64,23 @@ h4 {
   margin: 20px;
 }
 
+h3 {
+  padding-top: 10px;
+  border-top: 3px solid #0b4eb3;
+}
+
 main p {
   font-size: var(--fontsize3);
   margin: 20px;
   text-align: left;
 }
 
+#feedback-box {
+  margin-top: 10px;
+  padding-top: 10px;
+  font-size: var(--fontsize2);
+  color: var(--color5);
+}
 
 #answer-box {
   display: flex;
@@ -81,7 +95,7 @@ main button,
   color: var(--color3);
   font-weight: bold;
   font-size: var(--fontsize3);
-  padding: 20px;
+  padding: 10px 20px;
   margin: 3px;
   border-radius: 8px;
 }
@@ -99,12 +113,49 @@ input[type=text] {
 
 input[type=submit] {
   background-color: var(--color1);
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
   color: var(--color3);
   cursor: pointer;
 }
 
+input[type=submit]:hover {
+  background-color: var(--color2);
+}
 
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: var(--fontsize3);
+}
+
+th {
+  font-size: var(--fontsize2);
+}
+
+th, td {
+  padding: 5px 15px;
+  border: none;
+}
+
+tr:nth-child(even) {
+  background-color: var(--color4);
+}
+
+#high-score-row:hover {
+  background-color: coral;
+}
+
+#high-score-box button {
+  font-size: var(--fontsize4);
+  padding: 5px 10px;
+}
 
 .hide{
   display: none;
+}
+
+.visibility{
+  visibility: hidden;
 }

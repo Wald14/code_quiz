@@ -89,9 +89,11 @@ function displayQuestion() {
 
 function cycleQuestion() {
   // Check if the wrong answer was selected and hand out 10 second penalty if so
+  feedbackBoxEl.classList.remove("visibility");
   if (this.textContent !== questions[qNumber].answer) {
     timer -= 10;
-    correctOrWrongEl.textContent = "WRONG"
+    // correctOrWrongEl.textContent = "WRONG"
+    displayFeedback("Wrong")
   } else {
     score += 10;
     correctOrWrongEl.textContent = "CORRECT"
@@ -106,6 +108,25 @@ function cycleQuestion() {
   } else {
     displayQuestion()
   }
+}
+
+// REWIND COMPLETE
+
+function displayFeedback (text) {
+  var feedbackTime = 3;
+  var feedbackTimer;
+  feedbackBoxEl.classList.remove("visibility");
+  correctOrWrongEl.textContent = text;
+
+  feedbackTimer = setInterval(function () {
+  // Subtract 1 from timer
+  feedbackTime--;
+
+    // End Game if timer hits zero OR goes below zero because the player gets a 10 second penalty with less then 10 seconds left, causing timer to go below 0.
+    if (feedbackTime === 0) {
+      feedbackBoxEl.classList.add("visibility");
+    }
+  }, 1000)
 }
 
 
@@ -155,6 +176,7 @@ function highScoreDisplay () {
   startBoxEl.classList.add("hide");
   questionBoxEl.classList.add("hide");
   headerEl.classList.add("hide");
+  feedbackBoxEl.classList.add("visibility");
   highScoreBoxEl.classList.remove("hide");
 
   // Cancels timer in the event the user clicked mid game
@@ -182,6 +204,7 @@ function highScoreDisplay () {
 
     // create row
     var row = document.createElement("tr");
+    row.setAttribute("id", "high-score-row")
 
     // create player cell and populate
     var playerCell = document.createElement("td");
