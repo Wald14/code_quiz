@@ -5,11 +5,15 @@ var userInputBoxEl = document.querySelector("#user-input-box");
 var highScoreBoxEl = document.querySelector("#high-score-box");
 var startBtnEl = document.querySelector("#start-button");
 var timerCountEl = document.querySelector("#time-count");
+var questionEl = document.querySelector("#question");
+var answerBoxEl = document.querySelector("#answer-box");
 
 
 // Global Variables
 var timerInterval;
 var timer = 75;
+var qNumber = 0;
+
 
 // Questions (array of objects)
 var questions = [
@@ -35,6 +39,7 @@ function startGame() {
   questionBoxEl.classList.remove("hide");
 
   countDownTimer();
+  cycleQuestions();
 }
 
 
@@ -44,7 +49,6 @@ function countDownTimer() {
     timer--;
     // Display time on screen
     timerCountEl.textContent = timer;
-
     // End Game if timer hits zero OR goes below zero because the player gets a 10 second penalty with less then 10 seconds left, causing timer to go below 0.
     if (timer <= 0) {
       endGame();
@@ -52,7 +56,31 @@ function countDownTimer() {
   }, 1000)
 }
 
-function endGame(){
+
+function cycleQuestions() {
+  // Sets <h2> to display current question
+  questionEl.textContent = questions[qNumber].question;
+  console.log(questions[qNumber].question);
+  // clears answers (if any)
+  answerBoxEl.innerHTML = "";
+
+  // adds a button for each answer from the "choice" array for said question
+  for (var i = 0; i < questions[qNumber].choices.length; i++) {
+    var button = document.createElement("button");
+    // add the text content of the button 
+    button.textContent = questions[qNumber].choices[i];
+    button.addEventListener('click', increaseScore)
+    // append the button to the answerBox
+    answerBoxEl.append(button);
+  }
+}
+
+function increaseScore() {
+
+}
+
+
+function endGame() {
 
 }
 
