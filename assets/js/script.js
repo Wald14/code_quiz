@@ -39,7 +39,7 @@ function startGame() {
   questionBoxEl.classList.remove("hide");
 
   countDownTimer();
-  cycleQuestions();
+  displayQuestion();
 }
 
 
@@ -57,7 +57,7 @@ function countDownTimer() {
 }
 
 
-function cycleQuestions() {
+function displayQuestion() {
   // Sets <h2> to display current question
   questionEl.textContent = questions[qNumber].question;
   console.log(questions[qNumber].question);
@@ -65,18 +65,30 @@ function cycleQuestions() {
   answerBoxEl.innerHTML = "";
 
   // adds a button for each answer from the "choice" array for said question
+  // when a button is clicked, the cycleQuestion function is called
   for (var i = 0; i < questions[qNumber].choices.length; i++) {
     var button = document.createElement("button");
     // add the text content of the button 
     button.textContent = questions[qNumber].choices[i];
-    button.addEventListener('click', increaseScore)
+    button.addEventListener('click', cycleQuestion)
     // append the button to the answerBox
     answerBoxEl.append(button);
   }
 }
 
-function increaseScore() {
-
+function cycleQuestion() {
+  // Check if the wrong answer was selected and hand out 10 second penalty if so
+  if (this.textContent !== questions[qNumber].answer) {
+    timer -= 10;
+  }
+  // Increase question number to index to the next question
+  qNumber++;
+  // If the last question was answered, end the game, otherwise display the next question
+  if(qNumber === questions.length){
+    endGame()
+  } else {
+    displayQuestion()
+  }
 }
 
 
