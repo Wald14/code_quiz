@@ -96,7 +96,8 @@ function cycleQuestion() {
     displayFeedback("Wrong")
   } else {
     score += 10;
-    correctOrWrongEl.textContent = "CORRECT"
+    // correctOrWrongEl.textContent = "CORRECT"
+    displayFeedback("Correct")
   }
 
   // Increase question number to index to the next question
