@@ -7,6 +7,7 @@ var startBtnEl = document.querySelector("#start-button");
 var timerCountEl = document.querySelector("#time-count");
 var questionEl = document.querySelector("#question");
 var answerBoxEl = document.querySelector("#answer-box");
+var highScoreBtnEl = document.querySelector("#high-score-button");
 
 
 // Global Variables
@@ -16,7 +17,7 @@ var qNumber = 0;
 var score = 0;
 
 // Global Arrays
-var highScoreArray = [];
+var highScoreArray = [{player: "Kirstin", score: 10}, {player: "Zach", score: 0}];
 var questions = [
   {
     question: "This is question one?",
@@ -114,12 +115,49 @@ function endGame() {
   userInputBoxEl.append(userScore, initialInputField, submitBtn);
   // Event listener for initals submission button
   submitBtn.addEventListener("click", function () {
-    console.log(`Player ${initialInputField.value} had a score of ${score} and was added to highScoreArray`);
+    // console.log(`Player ${initialInputField.value} had a score of ${score} and was added to highScoreArray`);
     highScoreArray.push({ player: initialInputField.value, score: score });
-    console.log(highScoreArray);
+    // console.log(highScoreArray);
+    highScoreDisplay();
   })
 }
 
+function highScoreDisplay () {
+  // Hide userInput box and show high score box
+  userInputBoxEl.classList.add("hide");
+  highScoreBoxEl.classList.remove("hide");
 
+  // Create Table Element
+  var highScoreTable = document.createElement("table");
+
+  // Create table header
+  var tableHeaderRow = document.createElement("tr");
+  var tableHeaderPlayer = document.createElement("th");
+  tableHeaderPlayer.textContent = "PLAYER";
+  var tableHeaderScore = document.createElement("th");
+  tableHeaderScore.textContent = "SCORE";
+  tableHeaderRow.append(tableHeaderPlayer, tableHeaderScore);
+  highScoreTable.append(tableHeaderRow);
+
+  // create table rows with cell data
+  for (var i = 0; i < highScoreArray.length; i++){
+    // pull values from objects in array
+    var values = Object.values(highScoreArray);
+    console.log(`The values are ${values}`)
+    // create row
+    var row = document.createElement("tr");
+    // create player cell and populate
+    var playerCell = document.createElement("td");
+    playerCell.textContent = values[i].player;
+    // create score cell and populate
+    var scoreCell = document.createElement("td");
+    scoreCell.textContent = values[i].score;
+    // append cells to row and row to table
+    row.append(playerCell, scoreCell);
+    highScoreTable.append(row);
+  }
+  // append table to high score box
+  highScoreBoxEl.append(highScoreTable)
+}
 
 startBtnEl.addEventListener("click", startGame);
