@@ -1,6 +1,7 @@
 // Element Queries
 var startBoxEl = document.querySelector("#startBox");
 var questionBoxEl = document.querySelector("#question-box");
+var feedbackBoxEl = document.querySelector("#feedback-box");
 var userInputBoxEl = document.querySelector("#user-input-box");
 var highScoreBoxEl = document.querySelector("#high-score-box");
 var startBtnEl = document.querySelector("#start-button");
@@ -9,11 +10,12 @@ var questionEl = document.querySelector("#question");
 var answerBoxEl = document.querySelector("#answer-box");
 var highScoreBtnEl = document.querySelector("#high-score-button");
 var headerEl = document.querySelector("header");
+var correctOrWrongEl = document.querySelector("#correct-or-wrong");
 
 
 // Global Variables
 var timerInterval;
-var timer = 15;
+var timer = 75;
 var qNumber = 0;
 var score = 0;
 
@@ -89,8 +91,10 @@ function cycleQuestion() {
   // Check if the wrong answer was selected and hand out 10 second penalty if so
   if (this.textContent !== questions[qNumber].answer) {
     timer -= 10;
+    correctOrWrongEl.textContent = "WRONG"
   } else {
     score += 10;
+    correctOrWrongEl.textContent = "CORRECT"
   }
 
   // Increase question number to index to the next question
@@ -113,8 +117,8 @@ function endGame() {
   questionBoxEl.classList.add("hide");
   userInputBoxEl.classList.remove("hide");
 
-  // Create <h3> with users final score
-  var userScore = document.createElement("h3");
+  // Create <h4> with users final score
+  var userScore = document.createElement("h4");
   userScore.textContent = `Score: ${score}`;
 
   // Create input for user to submit initials
@@ -230,7 +234,6 @@ function saveHighScoreArray() {
 
 function loadHighScoreArray() {
   highScoreArray = JSON.parse(localStorage.getItem("High-Score-Array"));
-  console.log(highScoreArray);
   if (highScoreArray === null){
     return [];
   } else {
